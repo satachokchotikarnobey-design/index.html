@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>ZAZA PANEL ADMIN</title>
+
+<style>
+
+body{
+margin:0;
+background:#000;
+font-family:Arial;
+overflow:hidden;
+color:#FFD700;
+}
+
+/* PANEL */
+
+.panel{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%) scale(0);
+width:380px;
+background:rgba(20,15,5,.95);
+border:1px solid #FFD700;
+border-radius:14px;
+padding:15px;
+box-shadow:0 0 25px #FFD70055;
+transition:.35s;
+opacity:0;
+z-index:9999;
+}
+
+.panel.show{
+transform:translate(-50%,-50%) scale(1);
+opacity:1;
+}
+
+.title{
+text-align:center;
+font-size:18px;
+margin-bottom:12px;
+text-shadow:0 0 10px #FFD700;
+}
+
+/* ROW */
+
+.row{
+display:flex;
+justify-content:space-between;
+align-items:center;
+border:1px solid #FFD700;
+padding:10px;
+margin:8px 0;
+border-radius:8px;
+}
+
+/* SWITCH */
+
+.switch{
+width:46px;
+height:22px;
+background:#222;
+border-radius:20px;
+position:relative;
+cursor:pointer;
+border:1px solid #FFD700;
+}
+
+.circle{
+width:18px;
+height:18px;
+background:#666;
+border-radius:50%;
+position:absolute;
+top:1px;
+left:2px;
+transition:.25s;
+}
+
+.switch.active{
+background:#FFD700;
+}
+
+.switch.active .circle{
+left:24px;
+background:#000;
+}
+
+/* FLOAT BUTTON */
+
+.floatBtn{
+position:fixed;
+right:18px;
+bottom:110px;
+width:65px;
+height:65px;
+border-radius:50%;
+background:linear-gradient(45deg,#FFD700,#b8860b);
+display:flex;
+justify-content:center;
+align-items:center;
+font-weight:bold;
+color:#000;
+box-shadow:0 0 20px #FFD700;
+cursor:pointer;
+user-select:none;
+z-index:10000;
+}
+
+/* DPI */
+
+.slider{
+width:100%;
+height:6px;
+background:#222;
+border-radius:20px;
+margin-top:10px;
+position:relative;
+}
+
+.thumb{
+width:18px;
+height:18px;
+border-radius:50%;
+background:#FFD700;
+position:absolute;
+top:-6px;
+left:50%;
+box-shadow:0 0 12px #FFD700;
+touch-action:none;
+}
+
+</style>
+</head>
+<body>
+
+<!-- FLOATING BUTTON -->
+
+<div class="floatBtn" id="floatBtn">
+ZAZA
+</div>
+
+<!-- PANEL -->
+
+<div class="panel" id="panel">
+
+<div class="title">
+⚡ ZAZA PANEL ADMIN ⚡
+</div>
+
+<div class="row">
+🔒 ล็อคหัว
+<div class="switch" onclick="toggle(this)">
+<div class="circle"></div>
+</div>
+</div>
+
+<div class="row">
+🎯 ช่วยเล็ง
+<div class="switch" onclick="toggle(this)">
+<div class="circle"></div>
+</div>
+</div>
+
+<div class="row">
+📱 ระบบ
+<select>
+<option>iOS</option>
+<option>Android</option>
+</select>
+</div>
+
+<div class="row">
+🎮 เกม
+<select>
+<option>Free Fire</option>
+<option>Free Fire MAX</option>
+</select>
+</div>
+
+<div class="row">
+📊 DPI
+<span id="dpiValue">120</span>
+</div>
+
+<div class="slider" id="slider">
+<div class="thumb" id="thumb"></div>
+</div>
+
+</div>
+
+<script>
+
+/* PANEL OPEN */
+
+let panel=document.getElementById("panel");
+let floatBtn=document.getElementById("floatBtn");
+
+floatBtn.onclick=()=>{
+panel.classList.toggle("show");
+}
+
+/* SWITCH */
+
+function toggle(el){
+el.classList.toggle("active");
+}
+
+/* DPI DRAG */
+
+let slider=document.getElementById("slider");
+let thumb=document.getElementById("thumb");
+let dpi=document.getElementById("dpiValue");
+
+let drag=false;
+
+thumb.addEventListener("mousedown",()=>drag=true);
+thumb.addEventListener("touchstart",()=>drag=true);
+
+document.addEventListener("mouseup",()=>drag=false);
+document.addEventListener("touchend",()=>drag=false);
+
+document.addEventListener("mousemove",move);
+document.addEventListener("touchmove",move);
+
+function move(e){
+
+if(!drag)return;
+
+let rect=slider.getBoundingClientRect();
+
+let x=(e.touches?e.touches[0].clientX:e.clientX)-rect.left;
+
+let p=x/rect.width;
+
+if(p<0)p=0;
+if(p>1)p=1;
+
+thumb.style.left=(p*100)+"%";
+
+dpi.innerText=Math.floor(p*300);
+
+}
+
+/* FLOAT BUTTON DRAG */
+
+let dragging=false;
+
+floatBtn.addEventListener("mousedown",startDrag);
+floatBtn.addEventListener("touchstart",startDrag);
+
+function startDrag(){
+dragging=true;
+}
+
+document.addEventListener("mouseup",()=>dragging=false);
+document.addEventListener("touchend",()=>dragging=false);
+
+document.addEventListener("mousemove",dragMove);
+document.addEventListener("touchmove",dragMove);
+
+function dragMove(e){
+
+if(!dragging)return;
+
+let x=e.touches?e.touches[0].clientX:e.clientX;
+let y=e.touches?e.touches[0].clientY:e.clientY;
+
+floatBtn.style.left=(x-32)+"px";
+floatBtn.style.top=(y-32)+"px";
+
+}
+
+</script>
+
+</body>
+</html>
