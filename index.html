@@ -2,274 +2,110 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<title>ZAZA PANEL ADMIN</title>
+<title>ระบบโหวตพรรค</title>
 
 <style>
-body{
-margin:0;
-background:#000;
-font-family:Arial;
-overflow:hidden;
-color:#FFD700;
-}
+  body {
+    font-family: Arial;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    text-align: center;
+    padding: 20px;
+  }
 
-/* PANEL */
+  .box {
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    width: 350px;
+    margin: auto;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
 
-.panel{
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%) scale(0);
-width:390px;
-background:rgba(18,18,18,.96);
-border:1px solid #FFD700;
-border-radius:14px;
-padding:16px;
-box-shadow:0 0 30px #FFD70055;
-transition:.35s;
-opacity:0;
-z-index:9999;
-}
+  h1 {
+    color: #ff4d6d;
+  }
 
-.panel.show{
-transform:translate(-50%,-50%) scale(1);
-opacity:1;
-}
+  .party {
+    text-align: left;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 10px;
+    background: #f5f5f5;
+  }
 
-.title{
-text-align:center;
-font-size:20px;
-font-weight:bold;
-margin-bottom:14px;
-text-shadow:0 0 10px #FFD700;
-}
+  button {
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    background: #4CAF50;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
 
-.row{
-display:flex;
-justify-content:space-between;
-align-items:center;
-border:1px solid #FFD700;
-padding:10px;
-margin:8px 0;
-border-radius:8px;
-}
-
-/* BUTTONS */
-
-.gameBtn{
-width:100%;
-padding:12px;
-margin-top:10px;
-border:none;
-border-radius:8px;
-font-weight:bold;
-cursor:pointer;
-background:linear-gradient(45deg,#FFD700,#b8860b);
-color:#000;
-}
-
-/* SWITCH */
-
-.switch{
-width:48px;
-height:24px;
-background:#222;
-border-radius:20px;
-position:relative;
-cursor:pointer;
-border:1px solid #FFD700;
-}
-
-.circle{
-width:18px;
-height:18px;
-border-radius:50%;
-background:#666;
-position:absolute;
-top:2px;
-left:2px;
-transition:.25s;
-}
-
-.switch.active{
-background:#FFD700;
-}
-
-.switch.active .circle{
-left:26px;
-background:#000;
-}
-
-/* FLOAT BUTTON */
-
-.floatBtn{
-position:fixed;
-right:18px;
-bottom:110px;
-width:68px;
-height:68px;
-border-radius:50%;
-display:flex;
-justify-content:center;
-align-items:center;
-font-weight:bold;
-background:linear-gradient(45deg,#FFD700,#b8860b);
-color:#000;
-cursor:pointer;
-box-shadow:0 0 20px #FFD700;
-z-index:10000;
-}
-
-/* DPI */
-
-.slider{
-width:100%;
-height:6px;
-background:#222;
-border-radius:20px;
-margin-top:10px;
-position:relative;
-}
-
-.thumb{
-width:18px;
-height:18px;
-border-radius:50%;
-background:#FFD700;
-position:absolute;
-top:-6px;
-left:50%;
-box-shadow:0 0 10px #FFD700;
-touch-action:none;
-}
-
-select{
-background:#111;
-color:#FFD700;
-border:1px solid #FFD700;
-padding:5px;
-border-radius:6px;
-}
+  .result {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+  }
 </style>
 </head>
+
 <body>
 
-<div class="floatBtn" id="floatBtn">
-ZAZA
-</div>
+<div class="box">
+  <h1>เลือกพรรคที่คุณชอบ</h1>
 
-<div class="panel" id="panel">
+  <div class="party">
+    <input type="radio" name="party" value="เพื่อน้องพี่ทำได้"> พรรค เพื่อน้องพี่ทำได้
+  </div>
 
-<div class="title">
-⚡ ZAZA PANEL ADMIN ⚡
-</div>
+  <div class="party">
+    <input type="radio" name="party" value="พลังเยาวชน"> พรรค พลังเยาวชน
+  </div>
 
-<div class="row">
-📱 ระบบ
-<select>
-<option>Android</option>
-<option>iOS</option>
-</select>
-</div>
+  <div class="party">
+    <input type="radio" name="party" value="รวมใจพัฒนา"> พรรค รวมใจพัฒนา
+  </div>
 
-<div class="row">
-🎮 เกม
-<select>
-<option>Free Fire</option>
-<option>Free Fire MAX</option>
-</select>
-</div>
+  <button onclick="vote()">โหวตเลย</button>
 
-<div class="row">
-⚙ Overlay
-<div class="switch" onclick="toggle(this)">
-<div class="circle"></div>
-</div>
-</div>
-
-<div class="row">
-📊 DPI
-<span id="dpiValue">120</span>
-</div>
-
-<div class="slider" id="slider">
-<div class="thumb" id="thumb"></div>
-</div>
-
-<button class="gameBtn" onclick="openFF()">
-🎮 เข้า Free Fire
-</button>
-
-<button class="gameBtn" onclick="openMAX()">
-🔥 เข้า Free Fire MAX
-</button>
-
+  <div class="result" id="result"></div>
 </div>
 
 <script>
+let votes = JSON.parse(localStorage.getItem("votes")) || {
+  "เพื่อน้องพี่ทำได้": 0,
+  "พลังเยาวชน": 0,
+  "รวมใจพัฒนา": 0
+};
 
-/* OPEN PANEL */
+function vote() {
+  let selected = document.querySelector('input[name="party"]:checked');
 
-let panel=document.getElementById("panel");
+  if (!selected) {
+    alert("กรุณาเลือกพรรคก่อน!");
+    return;
+  }
 
-document.getElementById("floatBtn").onclick=()=>{
-panel.classList.toggle("show");
+  votes[selected.value] += 1;
+
+  localStorage.setItem("votes", JSON.stringify(votes));
+
+  showResult();
 }
 
-/* SWITCH */
-
-function toggle(el){
-el.classList.toggle("active");
+function showResult() {
+  document.getElementById("result").innerHTML =
+    "📊 ผลโหวตตอนนี้<br><br>" +
+    "เพื่อน้องพี่ทำได้: " + votes["เพื่อน้องพี่ทำได้"] + "<br>" +
+    "พลังเยาวชน: " + votes["พลังเยาวชน"] + "<br>" +
+    "รวมใจพัฒนา: " + votes["รวมใจพัฒนา"];
 }
 
-/* DPI */
-
-let slider=document.getElementById("slider");
-let thumb=document.getElementById("thumb");
-let dpi=document.getElementById("dpiValue");
-
-let drag=false;
-
-thumb.addEventListener("mousedown",()=>drag=true);
-thumb.addEventListener("touchstart",()=>drag=true);
-
-document.addEventListener("mouseup",()=>drag=false);
-document.addEventListener("touchend",()=>drag=false);
-
-document.addEventListener("mousemove",move);
-document.addEventListener("touchmove",move);
-
-function move(e){
-
-if(!drag)return;
-
-let rect=slider.getBoundingClientRect();
-
-let x=(e.touches?e.touches[0].clientX:e.clientX)-rect.left;
-
-let p=x/rect.width;
-
-if(p<0)p=0;
-if(p>1)p=1;
-
-thumb.style.left=(p*100)+"%";
-
-dpi.innerText=Math.floor(p*300);
-
-}
-
-/* GAME LAUNCH */
-
-function openFF(){
-window.location.href=
-"intent://#Intent;package=com.dts.freefireth;end";
-}
-
-function openMAX(){
-window.location.href=
-"intent://#Intent;package=com.dts.freefiremax;end";
-}
-
+showResult();
 </script>
 
 </body>
