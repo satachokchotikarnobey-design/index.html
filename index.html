@@ -2,109 +2,141 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<title>โหวตพรรค เพื่อน้องพี่ทำได้</title>
+<title>พรรรค นร</title>
 
 <style>
 body {
-  margin: 0;
-  font-family: Arial;
-  background: url("policy.jpg") no-repeat center center fixed;
-  background-size: cover;
-  text-align: center;
+    font-family: sans-serif;
+    margin: 0;
+    background: #eef5ff;
 }
 
-/* กล่องโปร่งใส */
-.box {
-  background: rgba(255,255,255,0.92);
-  width: 360px;
-  margin: 50px auto;
-  padding: 20px;
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+header {
+    background: linear-gradient(90deg, #2ecc71, #3498db);
+    color: white;
+    text-align: center;
+    padding: 20px;
 }
 
-/* รูปพรรค */
-.party-img {
-  width: 120px;
-  height: 120px;
-  border-radius: 20px;
-  object-fit: cover;
-  border: 4px solid #ff4d6d;
-  margin-top: -60px;
-  background: white;
+.hero {
+    background-image: url("https://images.unsplash.com/photo-1523240795612-9a054b0db644");
+    background-size: cover;
+    background-position: center;
+    height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 26px;
+    font-weight: bold;
+    text-shadow: 2px 2px 10px black;
 }
 
-/* หัวข้อ */
-h1 {
-  color: #ff4d6d;
-  margin-top: 10px;
+.container {
+    padding: 20px;
 }
 
-/* ปุ่ม */
+.card {
+    background: white;
+    padding: 15px;
+    margin: 12px 0;
+    border-radius: 14px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
 button {
-  margin-top: 15px;
-  padding: 12px;
-  width: 100%;
-  border: none;
-  border-radius: 12px;
-  background: linear-gradient(45deg, #ff4d6d, #ff8fa3);
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #3498db;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-/* ผลโหวต */
-.result {
-  margin-top: 15px;
-  font-weight: bold;
-  font-size: 18px;
+button:hover {
+    background: #1f6fb2;
+}
+
+.vote {
+    text-align: center;
+    font-size: 22px;
+    margin-top: 10px;
+    font-weight: bold;
 }
 </style>
 </head>
 
 <body>
 
-<div class="box">
+<header>
+    <h1>พรรรค นร</h1>
+    <p>พรรคของนักเรียน เพื่อโรงเรียนที่ดีขึ้น</p>
+</header>
 
-  <!-- รูปพรรค -->
-  <img src="party.jpg" class="party-img">
+<div class="hero">
+    “เสียงของนักเรียน คือพลังของอนาคต”
+</div>
 
-  <h1>พรรค เพื่อน้องพี่ทำได้</h1>
+<div class="container">
 
-  <p>✔ เอาผ้าอนามัยไว้ในห้องน้ำหญิง<br>
-     ✔ เก็บขยะเช้า-เที่ยง<br>
-     ✔ ช่วยการบ้านน้อง ๆ</p>
+    <!-- นโยบาย -->
+    <div class="card">
+        <h2>📌 นโยบายพรรค</h2>
 
-  <label>
-    <input type="checkbox" id="voteCheck">
-    ฉันเลือกพรรคนี้
-  </label>
+        <p>🧻 ผ้าอนามัยในห้องน้ำ</p>
+        <p>🧹 รักษาความสะอาดช่วงเช้า–เที่ยง</p>
+        <p>📚 ปรึกษาเรื่องการบ้าน</p>
 
-  <button onclick="vote()">โหวตเลย</button>
+    </div>
 
-  <div class="result" id="result"></div>
+    <!-- ภาพ -->
+    <div class="card">
+        <h2>🖼️ ภาพพรรค</h2>
+        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644" style="width:100%; border-radius:12px;">
+    </div>
+
+    <!-- ระบบโหวต -->
+    <div class="card">
+        <h2>🗳️ ระบบโหวต</h2>
+
+        <button onclick="vote()">กดโหวตให้พรรคนี้</button>
+        <button onclick="resetVote()" style="background:#e74c3c; margin-top:10px;">
+            รีเซ็ตคะแนน
+        </button>
+
+        <div class="vote">
+            คะแนนทั้งหมด: <span id="score">0</span>
+        </div>
+    </div>
+
 </div>
 
 <script>
-let votes = localStorage.getItem("voteCount") || 0;
-
-function vote() {
-  let check = document.getElementById("voteCheck");
-
-  if (!check.checked) {
-    alert("กรุณาติ๊กเลือกพรรคก่อน!");
-    return;
-  }
-
-  votes++;
-  localStorage.setItem("voteCount", votes);
-
-  document.getElementById("result").innerHTML =
-    "📊 จำนวนคนโหวต: " + votes + " คน";
+// โหลดคะแนนเดิม
+let score = localStorage.getItem("voteScore");
+if(score === null){
+    score = 0;
+} else {
+    score = parseInt(score);
 }
 
-document.getElementById("result").innerHTML =
-  "📊 จำนวนคนโหวต: " + votes + " คน";
+document.getElementById("score").innerText = score;
+
+// กดโหวต
+function vote(){
+    score++;
+    localStorage.setItem("voteScore", score);
+    document.getElementById("score").innerText = score;
+}
+
+// รีเซ็ตคะแนน
+function resetVote(){
+    score = 0;
+    localStorage.setItem("voteScore", score);
+    document.getElementById("score").innerText = score;
+}
 </script>
 
 </body>
