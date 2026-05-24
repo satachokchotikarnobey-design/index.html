@@ -5,7 +5,6 @@
 <title>ZAZA PANEL ADMIN</title>
 
 <style>
-
 body{
 margin:0;
 background:#000;
@@ -21,12 +20,12 @@ position:fixed;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%) scale(0);
-width:380px;
-background:rgba(20,15,5,.95);
+width:390px;
+background:rgba(18,18,18,.96);
 border:1px solid #FFD700;
 border-radius:14px;
-padding:15px;
-box-shadow:0 0 25px #FFD70055;
+padding:16px;
+box-shadow:0 0 30px #FFD70055;
 transition:.35s;
 opacity:0;
 z-index:9999;
@@ -39,12 +38,11 @@ opacity:1;
 
 .title{
 text-align:center;
-font-size:18px;
-margin-bottom:12px;
+font-size:20px;
+font-weight:bold;
+margin-bottom:14px;
 text-shadow:0 0 10px #FFD700;
 }
-
-/* ROW */
 
 .row{
 display:flex;
@@ -56,11 +54,25 @@ margin:8px 0;
 border-radius:8px;
 }
 
+/* BUTTONS */
+
+.gameBtn{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer;
+background:linear-gradient(45deg,#FFD700,#b8860b);
+color:#000;
+}
+
 /* SWITCH */
 
 .switch{
-width:46px;
-height:22px;
+width:48px;
+height:24px;
 background:#222;
 border-radius:20px;
 position:relative;
@@ -71,10 +83,10 @@ border:1px solid #FFD700;
 .circle{
 width:18px;
 height:18px;
-background:#666;
 border-radius:50%;
+background:#666;
 position:absolute;
-top:1px;
+top:2px;
 left:2px;
 transition:.25s;
 }
@@ -84,7 +96,7 @@ background:#FFD700;
 }
 
 .switch.active .circle{
-left:24px;
+left:26px;
 background:#000;
 }
 
@@ -94,18 +106,17 @@ background:#000;
 position:fixed;
 right:18px;
 bottom:110px;
-width:65px;
-height:65px;
+width:68px;
+height:68px;
 border-radius:50%;
-background:linear-gradient(45deg,#FFD700,#b8860b);
 display:flex;
 justify-content:center;
 align-items:center;
 font-weight:bold;
+background:linear-gradient(45deg,#FFD700,#b8860b);
 color:#000;
-box-shadow:0 0 20px #FFD700;
 cursor:pointer;
-user-select:none;
+box-shadow:0 0 20px #FFD700;
 z-index:10000;
 }
 
@@ -128,21 +139,24 @@ background:#FFD700;
 position:absolute;
 top:-6px;
 left:50%;
-box-shadow:0 0 12px #FFD700;
+box-shadow:0 0 10px #FFD700;
 touch-action:none;
 }
 
+select{
+background:#111;
+color:#FFD700;
+border:1px solid #FFD700;
+padding:5px;
+border-radius:6px;
+}
 </style>
 </head>
 <body>
 
-<!-- FLOATING BUTTON -->
-
 <div class="floatBtn" id="floatBtn">
 ZAZA
 </div>
-
-<!-- PANEL -->
 
 <div class="panel" id="panel">
 
@@ -151,24 +165,10 @@ ZAZA
 </div>
 
 <div class="row">
-🔒 ล็อคหัว
-<div class="switch" onclick="toggle(this)">
-<div class="circle"></div>
-</div>
-</div>
-
-<div class="row">
-🎯 ช่วยเล็ง
-<div class="switch" onclick="toggle(this)">
-<div class="circle"></div>
-</div>
-</div>
-
-<div class="row">
 📱 ระบบ
 <select>
-<option>iOS</option>
 <option>Android</option>
+<option>iOS</option>
 </select>
 </div>
 
@@ -181,6 +181,13 @@ ZAZA
 </div>
 
 <div class="row">
+⚙ Overlay
+<div class="switch" onclick="toggle(this)">
+<div class="circle"></div>
+</div>
+</div>
+
+<div class="row">
 📊 DPI
 <span id="dpiValue">120</span>
 </div>
@@ -189,16 +196,23 @@ ZAZA
 <div class="thumb" id="thumb"></div>
 </div>
 
+<button class="gameBtn" onclick="openFF()">
+🎮 เข้า Free Fire
+</button>
+
+<button class="gameBtn" onclick="openMAX()">
+🔥 เข้า Free Fire MAX
+</button>
+
 </div>
 
 <script>
 
-/* PANEL OPEN */
+/* OPEN PANEL */
 
 let panel=document.getElementById("panel");
-let floatBtn=document.getElementById("floatBtn");
 
-floatBtn.onclick=()=>{
+document.getElementById("floatBtn").onclick=()=>{
 panel.classList.toggle("show");
 }
 
@@ -208,7 +222,7 @@ function toggle(el){
 el.classList.toggle("active");
 }
 
-/* DPI DRAG */
+/* DPI */
 
 let slider=document.getElementById("slider");
 let thumb=document.getElementById("thumb");
@@ -244,33 +258,16 @@ dpi.innerText=Math.floor(p*300);
 
 }
 
-/* FLOAT BUTTON DRAG */
+/* GAME LAUNCH */
 
-let dragging=false;
-
-floatBtn.addEventListener("mousedown",startDrag);
-floatBtn.addEventListener("touchstart",startDrag);
-
-function startDrag(){
-dragging=true;
+function openFF(){
+window.location.href=
+"intent://#Intent;package=com.dts.freefireth;end";
 }
 
-document.addEventListener("mouseup",()=>dragging=false);
-document.addEventListener("touchend",()=>dragging=false);
-
-document.addEventListener("mousemove",dragMove);
-document.addEventListener("touchmove",dragMove);
-
-function dragMove(e){
-
-if(!dragging)return;
-
-let x=e.touches?e.touches[0].clientX:e.clientX;
-let y=e.touches?e.touches[0].clientY:e.clientY;
-
-floatBtn.style.left=(x-32)+"px";
-floatBtn.style.top=(y-32)+"px";
-
+function openMAX(){
+window.location.href=
+"intent://#Intent;package=com.dts.freefiremax;end";
 }
 
 </script>
