@@ -2,9 +2,11 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>เพื่อน้องพี่ทำได้</title>
 
 <style>
+
 body{
 margin:0;
 display:flex;
@@ -16,90 +18,145 @@ font-family:Arial,sans-serif;
 }
 
 .poster{
-width:1000px;
-height:500px;
-background:linear-gradient(135deg,#ffb6d5,#ffcce2,#ffe3ef);
+width:1200px;
+height:650px;
+background:linear-gradient(135deg,#ffb8d4,#ffd8ea,#fff0f7);
 border-radius:35px;
-display:flex;
+box-shadow:0 10px 30px rgba(0,0,0,.25);
+padding:25px;
 overflow:hidden;
-box-shadow:0 15px 35px rgba(0,0,0,0.25);
+position:relative;
 }
 
-.left{
-width:40%;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:20px;
-}
-
-.photo-box{
-width:300px;
-height:300px;
-border:5px dashed #ff5fa2;
-border-radius:25px;
-background:white;
-display:flex;
-justify-content:center;
-align-items:center;
-color:#ff5fa2;
-font-size:24px;
-font-weight:bold;
-}
-
-.right{
-width:60%;
-display:flex;
-flex-direction:column;
-justify-content:center;
-padding:50px;
-color:white;
-}
-
+/* หัว */
 .title{
-font-size:65px;
+text-align:center;
+font-size:70px;
 font-weight:bold;
-color:#ff2e7a;
+color:#ff2f7c;
+-webkit-text-stroke:3px #fff;
+text-shadow:0 4px 12px rgba(255,0,120,.3);
 }
 
 .sub{
+text-align:center;
 font-size:28px;
-color:#ffffff;
-margin-top:10px;
-background:#ff6fae;
-display:inline-block;
-padding:10px 20px;
+background:#ff4d94;
+color:white;
+padding:10px;
 border-radius:18px;
+width:420px;
+margin:auto;
+margin-top:10px;
 }
 
-.hearts{
+/* เนื้อหา */
+.main{
+display:flex;
+margin-top:35px;
+gap:40px;
+}
+
+/* ช่องรูป */
+.photo{
+width:450px;
+height:450px;
+background:white;
+border:8px solid #ff5ea6;
+border-radius:50px;
+display:flex;
+justify-content:center;
+align-items:center;
 font-size:35px;
-margin-top:25px;
+font-weight:bold;
+color:#ff5ea6;
+box-shadow:0 0 15px rgba(255,0,120,.2);
 }
-</style>
 
+/* ด้านขวา */
+.right{
+flex:1;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.card{
+background:rgba(255,255,255,.85);
+width:100%;
+height:450px;
+border-radius:35px;
+padding:30px;
+box-shadow:0 0 18px rgba(0,0,0,.1);
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+}
+
+.logo{
+font-size:45px;
+color:#ff2f7c;
+font-weight:bold;
+margin-bottom:20px;
+}
+
+.slogan{
+font-size:35px;
+color:#ff4d94;
+text-align:center;
+font-weight:bold;
+}
+
+/* ตกแต่ง */
+.heart{
+position:absolute;
+font-size:50px;
+opacity:.7;
+}
+
+.h1{top:25px;left:25px;}
+.h2{bottom:20px;right:30px;}
+.h3{top:100px;right:80px;}
+
+</style>
 </head>
 <body>
 
 <div class="poster">
 
-<div class="left">
-<div class="photo-box">
-ใส่รูปตรงนี้
-</div>
-</div>
+<div class="heart h1">💖</div>
+<div class="heart h2">🎀</div>
+<div class="heart h3">✨</div>
 
-<div class="right">
 <div class="title">
 เพื่อน้องพี่ทำได้
 </div>
 
 <div class="sub">
-น่ารัก • สดใส • สีชมพู
+ใส่ใจทุกคน • ร่วมกันพัฒนาโรงเรียนของเรา
 </div>
 
-<div class="hearts">
-🩷 ✨ 🌸 🎀 ⭐
+<div class="main">
+
+<div class="photo">
+</div>
+
+<div class="right">
+
+<div class="card">
+
+<div class="logo">
+🩷 เพื่อน้องพี่ทำได้
+</div>
+
+<div class="slogan">
+เลือกเรา<br>
+เลือกอนาคตที่ดีกว่า ✨
+</div>
+
+</div>
+
 </div>
 
 </div>
