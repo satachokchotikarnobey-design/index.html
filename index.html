@@ -2,142 +2,109 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<title>พรรรค นร</title>
+<title>เพื่อน้องพี่ทำได้</title>
 
 <style>
-body {
-    font-family: sans-serif;
-    margin: 0;
-    background: #eef5ff;
+body{
+margin:0;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:#ffd6e7;
+font-family:Arial,sans-serif;
 }
 
-header {
-    background: linear-gradient(90deg, #2ecc71, #3498db);
-    color: white;
-    text-align: center;
-    padding: 20px;
+.poster{
+width:1000px;
+height:500px;
+background:linear-gradient(135deg,#ffb6d5,#ffcce2,#ffe3ef);
+border-radius:35px;
+display:flex;
+overflow:hidden;
+box-shadow:0 15px 35px rgba(0,0,0,0.25);
 }
 
-.hero {
-    background-image: url("https://images.unsplash.com/photo-1523240795612-9a054b0db644");
-    background-size: cover;
-    background-position: center;
-    height: 240px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 26px;
-    font-weight: bold;
-    text-shadow: 2px 2px 10px black;
+.left{
+width:40%;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
 }
 
-.container {
-    padding: 20px;
+.photo-box{
+width:300px;
+height:300px;
+border:5px dashed #ff5fa2;
+border-radius:25px;
+background:white;
+display:flex;
+justify-content:center;
+align-items:center;
+color:#ff5fa2;
+font-size:24px;
+font-weight:bold;
 }
 
-.card {
-    background: white;
-    padding: 15px;
-    margin: 12px 0;
-    border-radius: 14px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+.right{
+width:60%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+padding:50px;
+color:white;
 }
 
-button {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 10px;
-    background: #3498db;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
+.title{
+font-size:65px;
+font-weight:bold;
+color:#ff2e7a;
 }
 
-button:hover {
-    background: #1f6fb2;
+.sub{
+font-size:28px;
+color:#ffffff;
+margin-top:10px;
+background:#ff6fae;
+display:inline-block;
+padding:10px 20px;
+border-radius:18px;
 }
 
-.vote {
-    text-align: center;
-    font-size: 22px;
-    margin-top: 10px;
-    font-weight: bold;
+.hearts{
+font-size:35px;
+margin-top:25px;
 }
 </style>
-</head>
 
+</head>
 <body>
 
-<header>
-    <h1>พรรรค นร</h1>
-    <p>พรรคของนักเรียน เพื่อโรงเรียนที่ดีขึ้น</p>
-</header>
+<div class="poster">
 
-<div class="hero">
-    “เสียงของนักเรียน คือพลังของอนาคต”
+<div class="left">
+<div class="photo-box">
+ใส่รูปตรงนี้
+</div>
 </div>
 
-<div class="container">
+<div class="right">
+<div class="title">
+เพื่อน้องพี่ทำได้
+</div>
 
-    <!-- นโยบาย -->
-    <div class="card">
-        <h2>📌 นโยบายพรรค</h2>
+<div class="sub">
+น่ารัก • สดใส • สีชมพู
+</div>
 
-        <p>🧻 ผ้าอนามัยในห้องน้ำ</p>
-        <p>🧹 รักษาความสะอาดช่วงเช้า–เที่ยง</p>
-        <p>📚 ปรึกษาเรื่องการบ้าน</p>
-
-    </div>
-
-    <!-- ภาพ -->
-    <div class="card">
-        <h2>🖼️ ภาพพรรค</h2>
-        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644" style="width:100%; border-radius:12px;">
-    </div>
-
-    <!-- ระบบโหวต -->
-    <div class="card">
-        <h2>🗳️ ระบบโหวต</h2>
-
-        <button onclick="vote()">กดโหวตให้พรรคนี้</button>
-        <button onclick="resetVote()" style="background:#e74c3c; margin-top:10px;">
-            รีเซ็ตคะแนน
-        </button>
-
-        <div class="vote">
-            คะแนนทั้งหมด: <span id="score">0</span>
-        </div>
-    </div>
+<div class="hearts">
+🩷 ✨ 🌸 🎀 ⭐
+</div>
 
 </div>
 
-<script>
-// โหลดคะแนนเดิม
-let score = localStorage.getItem("voteScore");
-if(score === null){
-    score = 0;
-} else {
-    score = parseInt(score);
-}
-
-document.getElementById("score").innerText = score;
-
-// กดโหวต
-function vote(){
-    score++;
-    localStorage.setItem("voteScore", score);
-    document.getElementById("score").innerText = score;
-}
-
-// รีเซ็ตคะแนน
-function resetVote(){
-    score = 0;
-    localStorage.setItem("voteScore", score);
-    document.getElementById("score").innerText = score;
-}
-</script>
+</div>
 
 </body>
 </html>
