@@ -2,166 +2,213 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>เพื่อน้องพี่ทำได้</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>พรรคเพื่อมาคิด พี่ทำได้</title>
 
 <style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: "Prompt", sans-serif;
+}
 
 body{
-margin:0;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-background:#ffd6e7;
-font-family:Arial,sans-serif;
+    background:#fff5fa;
+    color:#333;
 }
 
-.poster{
-width:1200px;
-height:650px;
-background:linear-gradient(135deg,#ffb8d4,#ffd8ea,#fff0f7);
-border-radius:35px;
-box-shadow:0 10px 30px rgba(0,0,0,.25);
-padding:25px;
-overflow:hidden;
-position:relative;
+header{
+    background:linear-gradient(135deg,#ff6fa5,#ff9ec4);
+    color:white;
+    text-align:center;
+    padding:30px 20px;
 }
 
-/* หัว */
-.title{
-text-align:center;
-font-size:70px;
-font-weight:bold;
-color:#ff2f7c;
--webkit-text-stroke:3px #fff;
-text-shadow:0 4px 12px rgba(255,0,120,.3);
+header h1{
+    font-size:2rem;
+    margin-bottom:10px;
 }
 
-.sub{
-text-align:center;
-font-size:28px;
-background:#ff4d94;
-color:white;
-padding:10px;
-border-radius:18px;
-width:420px;
-margin:auto;
-margin-top:10px;
+header p{
+    font-size:1rem;
 }
 
-/* เนื้อหา */
-.main{
-display:flex;
-margin-top:35px;
-gap:40px;
-}
-
-/* ช่องรูป */
-.photo{
-width:450px;
-height:450px;
-background:white;
-border:8px solid #ff5ea6;
-border-radius:50px;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:35px;
-font-weight:bold;
-color:#ff5ea6;
-box-shadow:0 0 15px rgba(255,0,120,.2);
-}
-
-/* ด้านขวา */
-.right{
-flex:1;
-display:flex;
-justify-content:center;
-align-items:center;
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:20px;
 }
 
 .card{
-background:rgba(255,255,255,.85);
-width:100%;
-height:450px;
-border-radius:35px;
-padding:30px;
-box-shadow:0 0 18px rgba(0,0,0,.1);
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
+    background:#fff;
+    border-radius:20px;
+    padding:20px;
+    margin-bottom:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
 }
 
 .logo{
-font-size:45px;
-color:#ff2f7c;
-font-weight:bold;
-margin-bottom:20px;
+    width:100%;
+    max-width:350px;
+    display:block;
+    margin:0 auto;
+    border-radius:20px;
 }
 
 .slogan{
-font-size:35px;
-color:#ff4d94;
-text-align:center;
-font-weight:bold;
+    text-align:center;
+    font-size:1.2rem;
+    color:#ff4f8b;
+    font-weight:bold;
+    margin-top:15px;
 }
 
-/* ตกแต่ง */
-.heart{
-position:absolute;
-font-size:50px;
-opacity:.7;
+.policy{
+    display:flex;
+    gap:15px;
+    margin-top:15px;
+    align-items:flex-start;
 }
 
-.h1{top:25px;left:25px;}
-.h2{bottom:20px;right:30px;}
-.h3{top:100px;right:80px;}
+.icon{
+    font-size:1.8rem;
+}
 
+button{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:15px;
+    background:#ff4f8b;
+    color:white;
+    font-size:1rem;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#e83b78;
+}
+
+.score{
+    text-align:center;
+    font-size:2rem;
+    margin-top:15px;
+    color:#ff4f8b;
+    font-weight:bold;
+}
+
+.reset{
+    background:#888;
+    margin-top:10px;
+}
+
+.reset:hover{
+    background:#666;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    color:#777;
+}
 </style>
 </head>
+
 <body>
 
-<div class="poster">
+<header>
+    <h1>💖 พรรคเพื่อมาคิด พี่ทำได้</h1>
+    <p>คิดเพื่อทุกคน ทำได้เพื่อโรงเรียน</p>
+</header>
 
-<div class="heart h1">💖</div>
-<div class="heart h2">🎀</div>
-<div class="heart h3">✨</div>
+<div class="container">
 
-<div class="title">
-เพื่อน้องพี่ทำได้
+    <div class="card">
+        <img src="logo.png" alt="โลโก้พรรค" class="logo">
+
+        <div class="slogan">
+            "ทุกปัญหามีทางออก ถ้าเราช่วยกันคิดและลงมือทำ"
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>📌 นโยบายพรรค</h2>
+
+        <div class="policy">
+            <div class="icon">🧻</div>
+            <div>
+                <strong>ผ้าอนามัยในห้องน้ำ</strong><br>
+                จัดให้มีผ้าอนามัยในห้องน้ำอย่างเพียงพอ เพื่อช่วยเหลือนักเรียนในเวลาจำเป็น
+            </div>
+        </div>
+
+        <div class="policy">
+            <div class="icon">🧹</div>
+            <div>
+                <strong>รักษาความสะอาดช่วงเช้า–เที่ยง</strong><br>
+                รณรงค์และช่วยดูแลความสะอาดของโรงเรียนให้สะอาดน่าอยู่
+            </div>
+        </div>
+
+        <div class="policy">
+            <div class="icon">📚</div>
+            <div>
+                <strong>ปรึกษาเรื่องการบ้าน</strong><br>
+                เปิดช่องทางให้เพื่อนช่วยเพื่อน และรุ่นพี่ช่วยแนะนำการเรียน
+            </div>
+        </div>
+
+    </div>
+
+    <div class="card">
+        <h2>🗳️ โหวตให้พรรค</h2>
+
+        <button onclick="vote()">
+            โหวตให้พรรคเพื่อมาคิด พี่ทำได้
+        </button>
+
+        <button class="reset" onclick="resetVote()">
+            รีเซ็ตคะแนน
+        </button>
+
+        <div class="score">
+            <span id="score">0</span> คะแนน
+        </div>
+    </div>
+
 </div>
 
-<div class="sub">
-ใส่ใจทุกคน • ร่วมกันพัฒนาโรงเรียนของเรา
-</div>
+<footer>
+    พรรคเพื่อมาคิด พี่ทำได้ © 2026
+</footer>
 
-<div class="main">
+<script>
+let score = localStorage.getItem("partyVote");
 
-<div class="photo">
-</div>
+if(score === null){
+    score = 0;
+} else {
+    score = parseInt(score);
+}
 
-<div class="right">
+document.getElementById("score").innerText = score;
 
-<div class="card">
+function vote(){
+    score++;
+    localStorage.setItem("partyVote", score);
+    document.getElementById("score").innerText = score;
+}
 
-<div class="logo">
-🩷 เพื่อน้องพี่ทำได้
-</div>
-
-<div class="slogan">
-เลือกเรา<br>
-เลือกอนาคตที่ดีกว่า ✨
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
+function resetVote(){
+    if(confirm("ต้องการรีเซ็ตคะแนนใช่หรือไม่?")){
+        score = 0;
+        localStorage.setItem("partyVote", score);
+        document.getElementById("score").innerText = score;
+    }
+}
+</script>
 
 </body>
 </html>
